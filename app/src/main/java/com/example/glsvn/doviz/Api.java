@@ -1,17 +1,19 @@
 package com.example.glsvn.doviz;
 
+import com.example.glsvn.doviz.model.moneyApiInterface;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Api {
 
-    private static Retrofit retrofit;
-    private static String url="http://data.fixer.io/api/latest?access_key=";
+    private static Retrofit retrofit=null;
+    private static String url="http://data.fixer.io/api/";
 
     public static Retrofit getRetrofitInstance() {
 
         if (retrofit == null) {
-            retrofit = new retrofit2.Retrofit.Builder()
+            retrofit = new Retrofit.Builder()
                     .baseUrl(url)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
