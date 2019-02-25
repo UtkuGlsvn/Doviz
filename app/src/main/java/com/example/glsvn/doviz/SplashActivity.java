@@ -14,10 +14,12 @@
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
-            internetControl();
+            startActivity(new Intent(SplashActivity.this,MainActivity.class));
+                finish();
+//            internetControl();
         }
 
-        void internetControl()
+        /*void internetControl()
         {
             ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -33,5 +35,5 @@
                 finish();
             }
 
-        }
+        }*/
     }
