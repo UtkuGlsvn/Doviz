@@ -8,6 +8,10 @@ import android.widget.TextView;
 import com.example.glsvn.doviz.model.dovizObject;
 import com.example.glsvn.doviz.model.moneyApiInterface;
 
+import java.security.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,9 +41,12 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<dovizObject> call, Response<dovizObject> response) {
                 dovizObject rates = response.body();
 
-                txt2.setText(rates.rates.getLira()+"");
-                txt4.setText(rates.rates.getUsd()+"");
-                txt6.setText(rates.rates.getCad()+"");
+                String date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+                        .format(new Date(rates.getTimestamp() * 1000L));
+                clocktxt.setText(date); //zamanı api den çektiğim için api de bulunan saat dilimine göre geliyor
+                txt2.setText(rates.rates.getLira()+"  TL");
+                txt4.setText(rates.rates.getUsd()+" USD");
+                txt6.setText(rates.rates.getCad()+" CAD");
 
                 Log.d("response",response.toString());
             }

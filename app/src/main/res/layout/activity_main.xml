@@ -3,16 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:background="@android:color/white"
     tools:context=".MainActivity">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
     <TextView
         android:id="@+id/clock"
         android:textSize="18sp"
         android:textColor="@android:color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="2"
         android:text="saat"/>
     <Button
         android:layout_marginLeft="5dp"
@@ -23,15 +27,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
-
+</LinearLayout>
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_gravity="center">
+    android:gravity="center">
     <TextView
         android:textColor="@android:color/background_dark"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="5dp"
         android:text="@string/info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -50,7 +54,7 @@
         <TextView
             android:id="@+id/txt2"
             android:textSize="16sp"
-            android:layout_weight="1"
+            android:layout_weight="4"
             android:textColor="@android:color/background_dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -70,7 +74,7 @@
         <TextView
             android:id="@+id/txt4"
             android:textSize="16sp"
-            android:layout_weight="1"
+            android:layout_weight="4"
             android:textColor="@android:color/background_dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -90,7 +94,7 @@
         <TextView
             android:id="@+id/txt6"
             android:textSize="16sp"
-            android:layout_weight="1"
+            android:layout_weight="4"
             android:textColor="@android:color/background_dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
