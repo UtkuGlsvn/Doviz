@@ -15,25 +15,8 @@
             super.onCreate(savedInstanceState);
 
             startActivity(new Intent(SplashActivity.this,MainActivity.class));
-                finish();
-//            internetControl();
+            finish();
+
         }
 
-        /*void internetControl()
-        {
-            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-            boolean isConnected = activeNetwork != null &&
-                    activeNetwork.isConnectedOrConnecting();
-            if(isConnected==false)
-                Toast.makeText(getBaseContext(),"Not connected internet!",Toast.LENGTH_SHORT).show();
-            else
-            {
-
-                startActivity(new Intent(SplashActivity.this,MainActivity.class));
-                finish();
-            }
-
-        }*/
     }

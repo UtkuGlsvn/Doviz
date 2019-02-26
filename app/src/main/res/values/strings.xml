@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Doviz</string>
-    <string name="save">Save</string>
+    <string name="save">Kaydet</string>
+    <string name="finish">Bitir</string>
     <string name="TL">Türk Lirası:</string>
     <string name="USD">Amerikan Doları:</string>
     <string name="CAD">Canada Doları:</string>
