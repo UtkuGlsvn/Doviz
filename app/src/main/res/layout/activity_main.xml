@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:weightSum="2"
     android:background="@android:color/white"
     tools:context=".MainActivity">
 
@@ -24,12 +23,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
+
 <LinearLayout
-    android:weightSum="1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:gravity="center">
+    android:layout_gravity="center">
+    <TextView
+        android:textColor="@android:color/background_dark"
+        android:layout_marginBottom="15dp"
+        android:text="@string/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +42,7 @@
         <TextView
             android:id="@+id/txt1"
             android:textColor="@android:color/holo_red_dark"
-            android:text="adads"
+            android:text="@string/TL"
             android:textSize="16sp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
@@ -47,7 +52,6 @@
             android:textSize="16sp"
             android:layout_weight="1"
             android:textColor="@android:color/background_dark"
-            android:text="sadad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -58,7 +62,7 @@
         <TextView
             android:id="@+id/txt3"
             android:textColor="@android:color/holo_red_dark"
-            android:text="adads"
+            android:text="@string/USD"
             android:textSize="16sp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
@@ -67,7 +71,6 @@
             android:id="@+id/txt4"
             android:textSize="16sp"
             android:layout_weight="1"
-            android:text="sadad"
             android:textColor="@android:color/background_dark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -79,7 +82,7 @@
         <TextView
             android:id="@+id/txt5"
             android:textColor="@android:color/holo_red_dark"
-            android:text="adads"
+            android:text="@string/CAD"
             android:textSize="16sp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
@@ -89,7 +92,6 @@
             android:textSize="16sp"
             android:layout_weight="1"
             android:textColor="@android:color/background_dark"
-            android:text="sadad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

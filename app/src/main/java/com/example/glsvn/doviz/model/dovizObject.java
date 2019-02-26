@@ -5,11 +5,31 @@ import com.google.gson.annotations.SerializedName;
 public class dovizObject {
 
     @SerializedName("rates")
-    private ratesObject rates;
-    @SerializedName("id")
+    public rateObject rates;
+    @SerializedName("base")
     private String base;
     @SerializedName("date")
     private String date;
+    @SerializedName("timestamp")
+    private int timestamp;
+    @SerializedName("success")
+    private Boolean success;
+
+    public int getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(int timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public Boolean getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(Boolean success) {
+        this.success = success;
+    }
 
     public String getBase() {
         return base;
@@ -27,11 +47,11 @@ public class dovizObject {
         this.date = date;
     }
 
-    public ratesObject getRates() {
+    public rateObject getRates() {
         return rates;
     }
 
-    public void setRates(ratesObject rates) {
+    public void setRates(rateObject rates) {
         this.rates = rates;
     }
 }
