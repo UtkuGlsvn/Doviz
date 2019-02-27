@@ -9,11 +9,12 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorAccent"
     >
     <TextView
         android:id="@+id/clock"
         android:textSize="18sp"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="2"
@@ -22,8 +23,8 @@
         android:layout_marginLeft="5dp"
         android:id="@+id/save"
         android:text="@string/save"
-        android:background="@android:color/white"
-        android:backgroundTint="@android:color/white"
+        android:background="@drawable/buttonshape"
+        android:textColor="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
@@ -47,13 +48,13 @@
             android:id="@+id/txt1"
             android:textColor="@android:color/holo_red_dark"
             android:text="@string/TL"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/txt2"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:layout_weight="4"
             android:textColor="@android:color/background_dark"
             android:layout_width="wrap_content"
@@ -67,13 +68,13 @@
             android:id="@+id/txt3"
             android:textColor="@android:color/holo_red_dark"
             android:text="@string/USD"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/txt4"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:layout_weight="4"
             android:textColor="@android:color/background_dark"
             android:layout_width="wrap_content"
@@ -87,13 +88,13 @@
             android:id="@+id/txt5"
             android:textColor="@android:color/holo_red_dark"
             android:text="@string/CAD"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/txt6"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:layout_weight="4"
             android:textColor="@android:color/background_dark"
             android:layout_width="wrap_content"

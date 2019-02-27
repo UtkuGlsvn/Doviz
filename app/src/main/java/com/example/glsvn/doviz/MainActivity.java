@@ -1,5 +1,6 @@
 package com.example.glsvn.doviz;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
@@ -102,17 +103,18 @@ save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onResponse(Call<dovizObject> call, Response<dovizObject> response) {
                 dovizObject rates = response.body();
-    String date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
-            .format(new Date(rates.getTimestamp() * 1000L));
-    clocktxt.setText(date); //zamanı api den çektiğim için api de bulunan saat dilimine göre geliyor
-    txt2.setText(rates.rates.getLira() + "  TL");
-    txt4.setText(rates.rates.getUsd() + " USD");
-    txt6.setText(rates.rates.getCad() + " CAD");
-    Log.i("TL", rates.rates.getLira() + "");
-    Log.i("USD", rates.rates.getUsd() + "");
-    Log.i("CAD", rates.rates.getCad() + "");
-    //Log.d("response", response.toString());
-
+                if(rates.getSuccess()) {
+                    String date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+                            .format(new Date(rates.getTimestamp() * 1000L));
+                    clocktxt.setText(date); //zamanı api den çektiğim için api de bulunan saat dilimine göre geliyor
+                    txt2.setText(rates.rates.getLira() + "  TL");
+                    txt4.setText(rates.rates.getUsd() + " USD");
+                    txt6.setText(rates.rates.getCad() + " CAD");
+                    Log.i("TL", rates.rates.getLira() + "");
+                    Log.i("USD", rates.rates.getUsd() + "");
+                    Log.i("CAD", rates.rates.getCad() + "");
+                    //Log.d("response", response.toString());
+                }
             }
 
             @Override

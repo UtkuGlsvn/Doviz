@@ -1,6 +1,5 @@
     package com.example.glsvn.doviz;
 
-
     import android.content.Intent;
     import android.os.Bundle;
     import android.support.v7.app.AppCompatActivity;
@@ -9,7 +8,6 @@
 
     import com.example.glsvn.doviz.model.dovizObject;
     import com.example.glsvn.doviz.model.moneyApiInterface;
-
 
     import retrofit2.Call;
     import retrofit2.Callback;
@@ -35,7 +33,6 @@
 
             call.enqueue(new Callback<dovizObject>()
             {
-
                 @Override
                 public void onResponse(Call<dovizObject> call, Response<dovizObject> response) {
                     dovizObject rates = response.body();
