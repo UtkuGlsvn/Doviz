@@ -5,5 +5,5 @@
     <string name="TL">Türk Lirası:</string>
     <string name="USD">Amerikan Doları:</string>
     <string name="CAD">Canada Doları:</string>
-    <string name="info">1 EURO:</string>
+    <string name="info">Ana Para Birimi Euro</string>
 </resources>

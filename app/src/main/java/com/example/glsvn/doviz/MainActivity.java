@@ -1,6 +1,6 @@
 package com.example.glsvn.doviz;
 
-import android.Manifest;
+
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
@@ -22,6 +22,7 @@ import com.example.glsvn.doviz.model.moneyApiInterface;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
@@ -36,14 +37,15 @@ public class MainActivity extends AppCompatActivity {
     TextView clocktxt;
     TextView txt2,txt4,txt6;
     Button save;
+
     Boolean control=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        save=findViewById(R.id.save);
-        clocktxt=findViewById(R.id.clock);
+        save=findViewById(R.id.savebtn);
+        clocktxt=findViewById(R.id.clocktxt);
         txt2 = findViewById(R.id.txt2);
         txt4 = findViewById(R.id.txt4);
         txt6 = findViewById(R.id.txt6);
@@ -67,17 +69,17 @@ save.setOnClickListener(new View.OnClickListener() {
             File appDirectory = new File(Environment.getExternalStorageDirectory() + "/Mydovizapp");
             File logDirectory = new File(appDirectory + "/log");
             File logFile = new File(logDirectory, "logcat.txt");
-        // create app folder
+
             if ( !appDirectory.exists() ) {
                 appDirectory.mkdir();
             }
 
-            // create log folder
+
             if ( !logDirectory.exists() ) {
                 logDirectory.mkdir();
             }
             Toast.makeText(getBaseContext(),"Dosya oluştururdu adresi"+appDirectory.toString(),Toast.LENGTH_SHORT).show();
-            // clear the previous logcat and then write the new one to the file
+
             mylog(logFile);
 
         }
@@ -107,9 +109,9 @@ save.setOnClickListener(new View.OnClickListener() {
                     String date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
                             .format(new Date(rates.getTimestamp() * 1000L));
                     clocktxt.setText(date); //zamanı api den çektiğim için api de bulunan saat dilimine göre geliyor
-                    txt2.setText(rates.rates.getLira() + "  TL");
-                    txt4.setText(rates.rates.getUsd() + " USD");
-                    txt6.setText(rates.rates.getCad() + " CAD");
+                    txt2.setText(new DecimalFormat("##.###").format(rates.rates.getLira()) + "  TL");
+                    txt4.setText(new DecimalFormat("##.###").format(rates.rates.getUsd()) + " USD");
+                    txt6.setText(new DecimalFormat("##.###").format(rates.rates.getCad()) + " CAD");
                     Log.i("TL", rates.rates.getLira() + "");
                     Log.i("USD", rates.rates.getUsd() + "");
                     Log.i("CAD", rates.rates.getCad() + "");
