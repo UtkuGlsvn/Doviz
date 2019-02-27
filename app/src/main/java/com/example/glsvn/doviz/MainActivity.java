@@ -1,10 +1,12 @@
 package com.example.glsvn.doviz;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Environment;
 
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         txt6 = findViewById(R.id.txt6);
 
         internetControl();
-
+        requestPermission();
 
       new Timer().scheduleAtFixedRate(new TimerTask(){
             @Override
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 save.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        if ( isExternalStorageWritable() ) {
+        if ( isExternalStorageWritable() && writeControl() ) {
             save.setText(R.string.finish);
             File appDirectory = new File(Environment.getExternalStorageDirectory() + "/Mydovizapp");
             File logDirectory = new File(appDirectory + "/log");
@@ -86,6 +88,7 @@ save.setOnClickListener(new View.OnClickListener() {
     }
 });
 
+
         }
 
 
@@ -99,17 +102,19 @@ save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onResponse(Call<dovizObject> call, Response<dovizObject> response) {
                 dovizObject rates = response.body();
-
-                String date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
-                        .format(new Date(rates.getTimestamp() * 1000L));
-                clocktxt.setText(date); //zamanı api den çektiğim için api de bulunan saat dilimine göre geliyor
-                txt2.setText(rates.rates.getLira() + "  TL");
-                txt4.setText(rates.rates.getUsd() + " USD");
-                txt6.setText(rates.rates.getCad() + " CAD");
-                Log.i("TL",rates.rates.getLira()+"");
-                Log.i("USD",rates.rates.getUsd()+"");
-                Log.i("CAD",rates.rates.getCad()+"");
-                Log.d("response", response.toString());
+if(rates==null) {
+    String date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+            .format(new Date(rates.getTimestamp() * 1000L));
+    clocktxt.setText(date); //zamanı api den çektiğim için api de bulunan saat dilimine göre geliyor
+    txt2.setText(rates.rates.getLira() + "  TL");
+    txt4.setText(rates.rates.getUsd() + " USD");
+    txt6.setText(rates.rates.getCad() + " CAD");
+    Log.i("TL", rates.rates.getLira() + "");
+    Log.i("USD", rates.rates.getUsd() + "");
+    Log.i("CAD", rates.rates.getCad() + "");
+    Log.d("response", response.toString());
+}
+Toast.makeText(getBaseContext(),"problem",Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -119,9 +124,19 @@ save.setOnClickListener(new View.OnClickListener() {
         });
     }
 
-    public boolean isExternalStorageWritable() {
+    boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         if ( Environment.MEDIA_MOUNTED.equals( state ) ) {
+            return true;
+        }
+        return false;
+    }
+
+    boolean writeControl()
+    {
+        if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            Log.v("writecontrol","Permission is granted");
+            //File write logic here
             return true;
         }
         return false;
@@ -140,7 +155,27 @@ save.setOnClickListener(new View.OnClickListener() {
         }
 
     }
+    private void requestPermission() {
 
+        if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            Toast.makeText(MainActivity.this, "Write External Storage permission allows us to do store images. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
+        } else {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.e("value", "Permission Granted, Now you can use local drive .");
+                } else {
+                    Log.e("value", "Permission Denied, You cannot use local drive .");
+                }
+                break;
+        }
+    }
 
 }
 
