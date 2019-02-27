@@ -14,4 +14,6 @@ Uygulamanın APK'sı:
 
 [APK](https://github.com/UtkuGlsvn/Doviz/blob/eb491f49c7f8a953921e84af6a3db837ccf42de6/app/release/app-release.apk)
 
-Ekran Görüntüsü:![alt text](https://github.com/UtkuGlsvn/Doviz/blob/master/Screenshot.png "Screenshot")
+Ekran Görüntüsü:
+
+![alt text](https://github.com/UtkuGlsvn/Doviz/blob/master/Screenshot.png "Screenshot")
