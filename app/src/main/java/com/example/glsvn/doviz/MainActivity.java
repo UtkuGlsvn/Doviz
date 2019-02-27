@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
         internetControl();
         requestPermission();
-        //response();
       new Timer().scheduleAtFixedRate(new TimerTask(){
             @Override
             public void run(){
@@ -60,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 save.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
+
         if ( isExternalStorageWritable() && writeControl() && control) {
             control=false;
             save.setText(R.string.finish);
@@ -83,16 +83,14 @@ save.setOnClickListener(new View.OnClickListener() {
         else
         {
             save.setText(R.string.save);
+            requestPermission();
             control=true;
-
         }
 
-    }
+        }
 });
 
-
-        }
-
+}
 
     public void response() {
         moneyApiInterface myapiInterface = Api.getRetrofitInstance().create(moneyApiInterface.class);
@@ -136,7 +134,6 @@ save.setOnClickListener(new View.OnClickListener() {
     {
         if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             Log.v("writecontrol","Permission is granted");
-            //File write logic here
             return true;
         }
         return false;
@@ -167,12 +164,7 @@ save.setOnClickListener(new View.OnClickListener() {
 
     }
     private void requestPermission() {
-
-        if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            Toast.makeText(MainActivity.this, "Write External Storage permission allows us to do store images. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
-        } else {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-        }
     }
 
     @Override
