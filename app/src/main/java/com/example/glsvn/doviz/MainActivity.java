@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     TextView clocktxt;
     TextView txt2,txt4,txt6;
     Button save;
+    Boolean control=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         internetControl();
         requestPermission();
-
+        //response();
       new Timer().scheduleAtFixedRate(new TimerTask(){
             @Override
             public void run(){
@@ -59,13 +60,13 @@ public class MainActivity extends AppCompatActivity {
 save.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        if ( isExternalStorageWritable() && writeControl() ) {
+        if ( isExternalStorageWritable() && writeControl() && control) {
+            control=false;
             save.setText(R.string.finish);
             File appDirectory = new File(Environment.getExternalStorageDirectory() + "/Mydovizapp");
             File logDirectory = new File(appDirectory + "/log");
-            File logFile = new File(logDirectory, "logcat" + System.currentTimeMillis() + ".txt");
-
-// create app folder
+            File logFile = new File(logDirectory, "logcat.txt");
+        // create app folder
             if ( !appDirectory.exists() ) {
                 appDirectory.mkdir();
             }
@@ -74,14 +75,15 @@ save.setOnClickListener(new View.OnClickListener() {
             if ( !logDirectory.exists() ) {
                 logDirectory.mkdir();
             }
-
+            Toast.makeText(getBaseContext(),"Dosya oluştururdu adresi"+appDirectory.toString(),Toast.LENGTH_SHORT).show();
             // clear the previous logcat and then write the new one to the file
-            try {
-                Process process = Runtime.getRuntime().exec("logcat -c");
-                process = Runtime.getRuntime().exec("logcat -f " + logFile);
-            } catch ( IOException e ) {
-                e.printStackTrace();
-            }
+            mylog(logFile);
+
+        }
+        else
+        {
+            save.setText(R.string.save);
+            control=true;
 
         }
 
@@ -102,7 +104,6 @@ save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onResponse(Call<dovizObject> call, Response<dovizObject> response) {
                 dovizObject rates = response.body();
-if(rates==null) {
     String date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
             .format(new Date(rates.getTimestamp() * 1000L));
     clocktxt.setText(date); //zamanı api den çektiğim için api de bulunan saat dilimine göre geliyor
@@ -112,9 +113,8 @@ if(rates==null) {
     Log.i("TL", rates.rates.getLira() + "");
     Log.i("USD", rates.rates.getUsd() + "");
     Log.i("CAD", rates.rates.getCad() + "");
-    Log.d("response", response.toString());
-}
-Toast.makeText(getBaseContext(),"problem",Toast.LENGTH_SHORT).show();
+    //Log.d("response", response.toString());
+
             }
 
             @Override
@@ -141,7 +141,18 @@ Toast.makeText(getBaseContext(),"problem",Toast.LENGTH_SHORT).show();
         }
         return false;
     }
+    void mylog(final File logFile)
+    {
+        Process process = null;
+        try {
+            process = Runtime.getRuntime().exec("logcat -c");
+            process = Runtime.getRuntime().exec("logcat -f " + logFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+
+    }
     void internetControl()
     {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -178,49 +189,3 @@ Toast.makeText(getBaseContext(),"problem",Toast.LENGTH_SHORT).show();
     }
 
 }
-
-
-/*
-
-if ( isExternalStorageWritable() ) {
-
-            File appDirectory = new File( Environment.getExternalStorageDirectory() + "/MyPersonalAppFolder" );
-            File logDirectory = new File( appDirectory + "/log" );
-            File logFile = new File( logDirectory, "logcat" + System.currentTimeMillis() + ".txt" );
-
-            // create app folder
-            if ( !appDirectory.exists() ) {
-                appDirectory.mkdir();
-            }
-
-            // create log folder
-            if ( !logDirectory.exists() ) {
-                logDirectory.mkdir();
-            }
-
-            // clear the previous logcat and then write the new one to the file
-            try {
-                Process process = Runtime.getRuntime().exec("logcat -c");
-                process = Runtime.getRuntime().exec("logcat -f " + logFile);
-            } catch ( IOException e ) {
-                e.printStackTrace();
-            }
-
-        } else if ( isExternalStorageReadable() ) {
-            // only readable
-        } else {
-            // not accessible
-        }
-    }
-
-
-    /* Checks if external storage is available to at least read */
-  /*  public boolean isExternalStorageReadable() {
-        String state = Environment.getExternalStorageState();
-        if ( Environment.MEDIA_MOUNTED.equals( state ) ||
-                Environment.MEDIA_MOUNTED_READ_ONLY.equals( state ) ) {
-            return true;
-        }
-        return false;
-    }
- */
