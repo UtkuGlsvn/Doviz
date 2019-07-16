@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@android:color/white"
-    tools:context=".MainActivity">
+    tools:context=".Activity.MainActivity">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/txt2"
+            android:id="@+id/txtlira"
             android:textSize="20sp"
             android:layout_weight="4"
             android:textColor="@android:color/background_dark"
@@ -79,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/txt4"
+            android:id="@+id/txtdolar"
             android:textSize="20sp"
             android:layout_weight="4"
             android:textColor="@android:color/background_dark"
@@ -99,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/txt6"
+            android:id="@+id/txtcandolar"
             android:textSize="20sp"
             android:layout_weight="4"
             android:textColor="@android:color/background_dark"

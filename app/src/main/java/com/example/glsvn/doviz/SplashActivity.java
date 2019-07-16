@@ -6,8 +6,10 @@
     import android.util.Log;
     import android.widget.Toast;
 
+    import com.example.glsvn.doviz.Activity.MainActivity;
+    import com.example.glsvn.doviz.Api.Api;
     import com.example.glsvn.doviz.model.dovizObject;
-    import com.example.glsvn.doviz.model.moneyApiInterface;
+    import com.example.glsvn.doviz.Api.moneyApiInterface;
 
     import retrofit2.Call;
     import retrofit2.Callback;
@@ -20,7 +22,7 @@
             super.onCreate(savedInstanceState);
 
             apiControl();
-            startActivity(new Intent(SplashActivity.this,MainActivity.class));
+            startActivity(new Intent(SplashActivity.this, MainActivity.class));
             finish();
 
         }
@@ -35,11 +37,10 @@
             {
                 @Override
                 public void onResponse(Call<dovizObject> call, Response<dovizObject> response) {
-                    dovizObject rates = response.body();
-                    if(!rates.getSuccess())
-                        Toast.makeText(getBaseContext(),"Apiye erişim yok!",Toast.LENGTH_SHORT).show();
+                    if(response.isSuccessful())
+                        Toast.makeText(getBaseContext(),R.string.succesapi,Toast.LENGTH_SHORT).show();
                     else
-                        Toast.makeText(getBaseContext(),"Apiye erişim var!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(),R.string.unsuccesapi,Toast.LENGTH_SHORT).show();
                 }
 
                 @Override

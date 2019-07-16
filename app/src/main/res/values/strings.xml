@@ -6,4 +6,9 @@
     <string name="USD">Amerikan Doları:</string>
     <string name="CAD">Canada Doları:</string>
     <string name="info">Ana Para Birimi Euro</string>
+    <string name="error">Hata...</string>
+    <string name="succesapi">Apiye erişim var!</string>
+    <string name="unsuccesapi">Apiye erişim yok!</string>
+    <string name="notconnect">İnternet bağlantısı yok!</string>
+    <string name="apirequestfull">Aylık api sınırına ulaşmıştır</string>
 </resources>
