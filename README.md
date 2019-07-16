@@ -14,7 +14,7 @@ Kaydet butonuyla uygulamadaki log dosyaları telefona kaydediliyor.
 
 Uygulamanın APK'sı:
 
-[APK](https://github.com/UtkuGlsvn/Doviz/blob/eb491f49c7f8a953921e84af6a3db837ccf42de6/app/release/app-release.apk)
+[APK](https://github.com/UtkuGlsvn/Doviz/blob/master/app/release/app-debug.apk)
 
 Ekran Görüntüsü:
 
