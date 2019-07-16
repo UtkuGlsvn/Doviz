@@ -8,6 +8,8 @@ Döviz olarak ana(base) kur Euro'dur , ana ekrana gelen 3 farklı kur:Amerikan d
 
 retrofit 2.3 frameworkü kullanılmıştır.
 
+butterknife 8.5.1 frameworkü kullanılmıştır.
+
 Kaydet butonuyla uygulamadaki log dosyaları telefona kaydediliyor.
 
 Uygulamanın APK'sı:
