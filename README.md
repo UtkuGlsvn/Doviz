@@ -18,4 +18,4 @@ Uygulamanın APK'sı:
 
 Ekran Görüntüsü:
 
-![alt text](https://github.com/UtkuGlsvn/Doviz/blob/master/Screenshot.png "Screenshot")
+![alt text](https://github.com/UtkuGlsvn/Doviz/blob/master/Screenshot.png "screenshot")
